@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LostController!
+{% endblock %}
+
+{% block body %}
+
+	<div class="">
+		<h1>Seems were lost...</h1>
+		{% if bool == true %}
+			<img src="{{url}}" alt="lost gifs"/>
+		{% else %}
+			<div>
+				<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNG96ZTNlM2Vzd2Vyc2R3d2FyM3l0NmxrZHppYzBscXBicmQyaGQ3NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hGR5nHVKpNlm1Cc7mi/giphy.gif"></img>
+		</div>
+		{{url}}
+
+	{% endif %}
+</div>
+
+<script>
+	setTimeout(() => { 
+		window.location.href = 'http://test.esperlluette.ovh/'
+}, 5000);
+</script>{% endblock %}

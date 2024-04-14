@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HttpCodeController!
+{% endblock %}
+
+{% block body %}
+	<div class="">
+
+		{% if codes is not empty %}
+			{% if  output_message|length == 1  %}
+
+			
+				<h1>
+					{{output_message[0]}}</h1>
+			{% elseif output_message is not empty %}
+
+				<h1>
+					Code
+					{{output_message[0]}}:
+					{{output_message[2]}}</h1>
+			{% else %}
+				<h1>La base de données est vide</h1>
+
+
+			{% endif %}
+			{% else %}
+            <h1>Problème avec la base de données</h1>
+		{% endif %}
+
+
+		{% if codes is not empty %}
+			<button type="button" id="random" onclick="window.location.href='{{path('app_http_code')}}?http_code={{random(codes)}}'">Randomize code</button>
+		{% endif %}
+
+		<button type="button" id="home" onclick="window.location.href='{{path('app_home')}}'">To home</button>
+		<button type="button" id="add" onclick="window.location.href='{{path('app_add_code')}}'">Add code</button>
+	{% endblock %}
