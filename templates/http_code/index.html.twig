@@ -4,34 +4,52 @@
 {% endblock %}
 
 {% block body %}
-	<div class="">
+	<div class="flex justify-center items-center h-screen flex-col ">
 
 		{% if codes is not empty %}
 			{% if  output_message|length == 1  %}
 
-			
-				<h1>
+
+				<h1 class="text-5xl mb-5">
 					{{output_message[0]}}</h1>
 			{% elseif output_message is not empty %}
 
-				<h1>
-					Code
-					{{output_message[0]}}:
+				<h1 class="text-5xl mb-5">
+					Code :
+					{{output_message[0]}} <br> 
+					Tag: {{output_message[1]}} <br>
+					Message:
 					{{output_message[2]}}</h1>
 			{% else %}
-				<h1>La base de données est vide</h1>
+				<h1 class="text-5xl mb-5">La base de données est vide</h1>
 
 
 			{% endif %}
-			{% else %}
-            <h1>Problème avec la base de données</h1>
+		{% else %}
+			<h1 class="text-5xl mb-5">Problème avec la base de données</h1>
 		{% endif %}
 
 
-		{% if codes is not empty %}
-			<button type="button" id="random" onclick="window.location.href='{{path('app_http_code')}}?http_code={{random(codes)}}'">Randomize code</button>
-		{% endif %}
+		<div>
+			{% if codes is not empty %}
+				<button onclick="window.location.href='{{path('app_http_code')}}?http_code={{random(codes)}}'" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+					<span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+						Random Code
+					</span>
+				</button>
+			{% endif %}
 
-		<button type="button" id="home" onclick="window.location.href='{{path('app_home')}}'">To home</button>
-		<button type="button" id="add" onclick="window.location.href='{{path('app_add_code')}}'">Add code</button>
+			<button onclick="window.location.href='{{path('app_home')}}'" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+				<span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+					To home
+				</span>
+			</button>
+
+
+			<button onclick="window.location.href='{{path('app_add_code')}}'" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
+				<span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+					Add Error Codes
+				</span>
+			</button>
+		</div>
 	{% endblock %}

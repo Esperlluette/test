@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\ErrorCode;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,9 +14,9 @@ class AddCodeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('code')
-            ->add('tag')
-            ->add('message')
+            ->add('code', IntegerType::class)
+            ->add('tag', TextType::class)
+            ->add('message',TextType::class)
         ;
     }
 

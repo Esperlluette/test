@@ -30,6 +30,12 @@ class AddCodeController extends AbstractController
     #[Route('/add-code', name: 'app_add_code')]
     public function index(Request $request, EntityManagerInterface $em): Response
     {
+        $codes = $em->getRepository(ErrorCode::class)->findAll();
+        $http_codes = [];
+
+        foreach ($codes as $key => $value) {
+            array_push($http_codes, $value->getCode());
+        }
 
         $error_code = new ErrorCode();
         $form = $this->createForm(AddCodeType::class, $error_code);
@@ -52,6 +58,7 @@ class AddCodeController extends AbstractController
         return $this->render('add_code/index.html.twig', [
             'controller_name' => 'AddCodeController',
             'form' => $form->createView(),
+            'codes' => $http_codes,
         ]);
     }
 }
