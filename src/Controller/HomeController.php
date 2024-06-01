@@ -20,13 +20,23 @@ class HomeController extends AbstractController
             array_push($http_codes, $value->getCode());
         }
 
+        if (isset($_POST["purge"])) {
+            $repository = $em->getRepository(ErrorCode::class); 
+            $entites = $repository->findAll();
+
+            foreach ($entites as $entite) {
+                $em->remove($entite);
+            }
+
+            $em->flush();
+        }
+
         /**
          * le site utilise l'id de la base de données et non pas le code erreur pour la comparaison, l'url n'est donc pas conforme à la consigne 
          * 
          */
         return $this->render('home/index.html.twig', [
             'codes' => $http_codes,
-
         ]);
     }
 }
